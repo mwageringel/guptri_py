@@ -1,0 +1,9 @@
+*.tar.gz
+*.mexa64
+*.o
+*.so
+/build/
+/docs/_build/
+/local/
+/upstream/
+__pycache__/

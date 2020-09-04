@@ -1,0 +1,34 @@
+!    -*- f90 -*-
+! Note: the context of this file is case sensitive.
+
+python module _fguptri_py ! in
+    interface  ! in :_fguptri_py
+        subroutine fguptri(a,b,m,n,epsu,gap,zero,work,lwork,pp,qq,kstr,info) ! in :_fguptri_py:fguptri.f
+            complex*16 dimension(m*n),intent(inplace),depend(m,n) :: a
+            complex*16 dimension(m*n),intent(inplace),depend(m,n) :: b
+            integer intent(in) :: m
+            integer intent(in) :: n
+            double precision intent(in) :: epsu
+            double precision intent(in) :: gap
+            logical intent(in) :: zero
+            complex*16 dimension((2*(max(m,n)*max(m,n))+m*n+min(m,n)*min(m,n)+12*max(m,n)+3*min(m,n)+1)),intent(in),depend(m,n) :: work
+            integer intent(in) :: lwork
+            complex*16 dimension(m*m),intent(out),depend(m) :: pp
+            complex*16 dimension(n*n),intent(out),depend(n) :: qq
+            integer dimension(4,max(m,n)+6),intent(out),depend(m,n) :: kstr
+            integer intent(out) :: info
+            integer, optional,dimension(20) :: idbg=20*0
+            integer :: outunit
+            common /debug2/ idbg,outunit
+        end subroutine fguptri
+        subroutine convertkstr(ikstr,dkstr,work,kstrcols) ! in :_fguptri_py:fguptri.f
+            integer dimension(4,*) :: ikstr
+            double precision dimension(4,*) :: dkstr
+            integer dimension(4,*) :: work
+            integer :: kstrcols
+        end subroutine convertkstr
+    end interface
+end python module _fguptri_py
+
+! This file was generated with f2py (version:2): python -m numpy.f2py fguptri.f -m _fguptri_py -h _fguptri_py.pyf
+! See http://cens.ioc.ee/projects/f2py2e/

@@ -1,0 +1,74 @@
+From 54971ab255a3dfc28c67f5a70330e72d0cd3e946 Mon Sep 17 00:00:00 2001
+From: Markus Wageringel
+Date: Fri, 28 Aug 2020 20:29:10 +0200
+Subject: [PATCH] fix compile errors of fguptri
+
+---
+ fguptri.f  |  2 +-
+ fguptrig.f | 10 +++++-----
+ zguptri.f  |  2 +-
+ 3 files changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/fguptri.f b/fguptri.f
+index f2773fe..257edb8 100644
+--- a/fguptri.f
++++ b/fguptri.f
+@@ -5,7 +5,7 @@ C     line 17/18
+       subroutine fguptri(a,b,m,n,epsu,gap,zero, work, lwork, 
+      $                     pp, qq, kstr, info)
+       implicit none
+-      integer m, n, info, lwork, info
++      integer m, n, info, lwork
+       integer kstr(4,*)
+       complex*16 a(*), b(*), pp(*), qq(*), work(*)
+       double precision  epsu, gap, adelta, bdelta
+diff --git a/fguptrig.f b/fguptrig.f
+index 4a0668e..9157cfc 100644
+--- a/fguptrig.f
++++ b/fguptrig.f
+@@ -4,7 +4,7 @@
+       integer plhs(*), prhs(*)
+       integer nlhs, nrhs
+ 
+-      integer mxcreatefull, mxgetpr
++      integer mxCreateDoubleMatrix, mxgetpr
+ 
+ C
+ C This subroutine acts like a gateway to the clguptri
+@@ -51,11 +51,11 @@ C     Local variables
+       call mxCopyPtrToReal8(mxGetPr(prhs(7)),dzero,1)
+       zero = (abs(dzero) .gt. 0)
+ 
+-	  plhs(1) = mxcreatefull(2*m*m,1,0)
+-	  plhs(2) = mxcreatefull(2*n*n,1,0)
++	  plhs(1) = mxCreateDoubleMatrix(2*m*m,1,0)
++	  plhs(2) = mxCreateDoubleMatrix(2*n*n,1,0)
+ 
+ 	  kstrcols = max(m,n) + 6
+-	  plhs(3) = mxcreatefull(4,kstrcols,0)
++	  plhs(3) = mxCreateDoubleMatrix(4,kstrcols,0)
+ 
+       call fguptri(%val(mxGetPr(prhs(1))), %val(mxGetPr(prhs(2))),
+      $   m, n, epsu, gap, zero, %val(mxGetPr(prhs(8))), wsize, 
+@@ -63,7 +63,7 @@ C     Local variables
+      $   %val(mxGetPr(plhs(3))), info  )
+ 
+       dinfo = dble(info)
+- 	  plhs(4) = mxcreatefull(1,1,0)
++ 	  plhs(4) = mxCreateDoubleMatrix(1,1,0)
+ 	  call mxCopyReal8ToPtr(dinfo,mxGetPr(plhs(4)),1)
+ 
+       call convertkstr(%val(mxGetPr(plhs(3))),%val(mxGetPr(plhs(3))),
+diff --git a/zguptri.f b/zguptri.f
+index f4eb49d..e9464f1 100644
+--- a/zguptri.f
++++ b/zguptri.f
+@@ -1,4 +1,4 @@
+-nedasc    On this file June 13, 1987:
++c    On this file June 13, 1987:
+ c    guptri, upddel, cident, krnstr, norme  
+ c
+         subroutine guptri(a, b, ldab, m, n, epsu, gap, zero,
+-- 
+2.25.1
+
