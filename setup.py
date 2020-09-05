@@ -96,6 +96,12 @@ class TestCommand(Command):
             sys.exit(1)
 
 ext1 = Extension(name='guptri_py._fguptri_py',
+                 # workaround for build failures on travis with ubuntu due to missing flag,
+                 # see linker_so output of `sage -python setup.py config_fc --help-fcompiler` in travis logs;
+                 # see also https://github.com/numpy/numpy/issues/12799
+                 # (supposedly this is fixed in NumPy 1.18)
+                 extra_link_args=(['-shared']
+                                  if os.uname()[0].lower() == 'linux' else []),
                  sources=['guptri_py/_fguptri_py.pyf'] +
                          [os.path.join(TMPDIR, s) for s in ('fguptri.f', 'guptribase.f', 'zguptri.f')])
 
