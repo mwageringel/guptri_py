@@ -59,6 +59,14 @@ After successful installation, run the tests with Sage::
 
     sage -t guptri_py
 
+Issues
+------
+
+* With NumPy ≤ 1.17, it may be necessary to set::
+
+    export NPY_DISTUTILS_APPEND_FLAGS=1
+
+  to fix a linking problem. See https://github.com/numpy/numpy/issues/12799.
 
 .. _SAGE: https://www.sagemath.org/
 .. _GUPTRI: https://www8.cs.umu.se/research/nla/singular_pairs/guptri/
