@@ -376,6 +376,7 @@ def kcf_blocks(kstr):
 
 def _tests_sage():
     from sage.all import SageObject, matrix, RDF, CDF
+    from numpy.linalg import matrix_rank
 
     class GuptriTests(SageObject):
 
@@ -390,6 +391,13 @@ def _tests_sage():
             assert np.all(kb[:,0] == 0) or kb[0,0] < kb[1,0]
             assert np.all(kb[:,-1] == 0) or kb[0,-1] > kb[1,-1]
             assert np.all(kb[0,1:4] == kb[1,1:4])
+
+            # test that Y = A X + B X for some of the reducing subspaces
+            for k in range(1, 5):
+                Y, X = guptri(A, B, part=range(k))[2:4]
+                AXBX = (A * X).augment(B * X)
+                assert Y.ncols() == matrix_rank(AXBX, tol=1e-12)
+                assert Y.ncols() == matrix_rank(AXBX.augment(Y), tol=1e-12)
 
         def _test_1(self, **kwds):
             A = matrix(RDF, [[0,1,0], [0,0,2]])
