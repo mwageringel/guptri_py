@@ -99,6 +99,9 @@ class TestCommand(Command):
             sys.exit(1)
 
 ext1 = Extension(name='guptri_py._fguptri_py',
+                 # the following silences type mismatch errors in gfortran 10
+                 # (-fallow-argument-mismatch is not recognized by older fortran versions)
+                 extra_f77_compile_args=['-std=legacy'],
                  sources=['guptri_py/_fguptri_py.pyf'] +
                          [os.path.join(TMPDIR, s) for s in ('fguptri.f', 'guptribase.f', 'zguptri.f')])
 
