@@ -8,8 +8,11 @@ from distutils.dir_util import mkpath, remove_tree
 import os
 import sys
 
-UPSTREAM_TAR_URL = ("https://www8.cs.umu.se/research/nla/singular_pairs/guptri/archive/guptri.tar.gz",
-                    "https://www8.cs.umu.se/research/nla/singular_pairs/guptri/archive/fguptri.tar.gz")
+# original Guptri website went offline
+# UPSTREAM_TAR_URL = ("https://www8.cs.umu.se/research/nla/singular_pairs/guptri/archive/guptri.tar.gz",
+#                     "https://www8.cs.umu.se/research/nla/singular_pairs/guptri/archive/fguptri.tar.gz")
+UPSTREAM_TAR_URL = ("https://web.archive.org/web/20210310205556/https://www8.cs.umu.se/research/nla/singular_pairs/guptri/archive/guptri.tar.gz",
+                    "https://web.archive.org/web/20210310204056/https://www8.cs.umu.se/research/nla/singular_pairs/guptri/archive/fguptri.tar.gz")
 CHECKSUMS = ("42ba92fb3b58334d99b43e0e4338caeeba91d8d8", "3416bed23a0bf4175bec3e1579821c217c29a7bb")
 UPSTREAM_TAR_NAMES = ("guptri.tar.gz", "fguptri.tar.gz")
 

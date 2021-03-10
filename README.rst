@@ -69,7 +69,7 @@ Issues
   to fix a linking problem. See https://github.com/numpy/numpy/issues/12799.
 
 .. _SAGE: https://www.sagemath.org/
-.. _GUPTRI: https://www8.cs.umu.se/research/nla/singular_pairs/guptri/
+.. _GUPTRI: https://web.archive.org/web/20080920172251/https://www8.cs.umu.se/research/nla/singular_pairs/guptri/
 .. _NUMPY: https://numpy.org/
 .. _guptri_py_gh: https://github.com/mwageringel/guptri_py
 .. _guptri_py_rtd: https://guptri-py.readthedocs.io/en/latest/#module-guptri_py
