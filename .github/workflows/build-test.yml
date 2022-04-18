@@ -1,0 +1,9 @@
+name: Github Actions build and test
+on: [push]
+jobs:
+  my_first_job:
+    runs-on: ubuntu-latest
+    container: docker://sagemath/sagemath:latest
+    steps:
+      - name: My first step
+        run: sage --version
