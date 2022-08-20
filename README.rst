@@ -2,9 +2,6 @@
 ``guptri_py``
 #############
 
-.. image:: https://travis-ci.com/mwageringel/guptri_py.svg?branch=master
-   :target: https://travis-ci.com/mwageringel/guptri_py
-   :alt: Build Status
 .. image:: https://readthedocs.org/projects/guptri-py/badge/?version=latest
    :target: https://guptri-py.readthedocs.io/en/latest/?badge=latest
    :alt: Documentation Status
@@ -36,7 +33,7 @@ Installation
 ============
 
 **Requirements**: `NumPy <NUMPY_>`_ and, optionally, `SageMath <SAGE_>`_
-(tested with Ubuntu 20.04 and macOS, Sage 9.1, and on Travis-CI with Ubuntu).
+(tested with Sage 9.6 on Arch Linux and with earlier versions on macOS).
 
 First, clone the `repository from GitHub <guptri_py_gh_>`_::
 
