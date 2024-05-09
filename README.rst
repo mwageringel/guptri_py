@@ -56,9 +56,28 @@ After successful installation, run the tests with Sage::
 
     sage -t guptri_py
 
+Installing into a virtual environment (with system packages)::
+
+    python -m venv --system-site-packages ./venv   # assumes that setuptools and numpy are installed system-wide
+
+    ./venv/bin/pip3 install --upgrade --no-index -v .
+    # ./venv/bin/pip3 install --upgrade --no-index -v --no-build-isolation .
+
+    cd ./venv && ./bin/python   # it is important to change to a different directory
+    cd ./venv && ./bin/python -m IPython   # (or using IPython)
+
+Installing into a virtual environment (without system packages)::
+
+    python -m venv ./venv
+    ./venv/bin/pip3 install numpy
+    ./venv/bin/pip3 install wheel
+    ./venv/bin/pip3 install --upgrade --no-index -v .
+    cd ./venv && ./bin/python -m IPython   # (or using IPython)
+
 Issues
 ------
 
+* With Python 3.12+ and NumPy 1.26+, the build currently fails as numpy.distutils has been removed (#1).
 * With NumPy ≤ 1.17, it may be necessary to set::
 
     export NPY_DISTUTILS_APPEND_FLAGS=1
